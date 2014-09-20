@@ -1,3 +1,4 @@
+#import "SBApplication.h"
 @interface SBUIController : NSObject
 {
 }
