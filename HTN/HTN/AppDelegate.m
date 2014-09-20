@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [[TLMHub sharedHub] setApplicationIdentifier:@"com.example.hellomyo"];
+    [[TLMHub sharedHub] setApplicationIdentifier:@"com.wynd.htn"];
     // Call attachToAdjacent to begin looking for Myos to pair with.
     [[TLMHub sharedHub] attachToAdjacent];
     

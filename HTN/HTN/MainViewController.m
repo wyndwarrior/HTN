@@ -13,6 +13,8 @@
 -(void)setupOnce;
 -(void)connect;
 
+@property(nonatomic, strong) ChartView *chart1;
+
 @end
 
 @implementation MainViewController
@@ -24,6 +26,16 @@
     
     [self connect];
     [self setupOnce];
+    
+    
+    self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0];
+    self.tabBarItem.title = @"Home";
+    
+    if( [self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    UINavigationItem *item = self.navigationItem;
+    item.title = @"Home";
     
 }
 
@@ -72,6 +84,9 @@
                                                  name:TLMMyoDidReceivePoseChangedNotification
                                                object:nil];
     [[TLMHub sharedHub] setShouldNotifyInBackground:YES];
+    
+    self.chart1 = [[ChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+    [self.view addSubview:self.chart1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,7 +117,7 @@
     
     // Next, we want to apply a rotation and perspective transformation based on the pitch, yaw, and roll.
     CATransform3D rotationAndPerspectiveTransform = CATransform3DConcat(CATransform3DConcat(CATransform3DRotate (CATransform3DIdentity, angles.pitch.radians, -1.0, 0.0, 0.0), CATransform3DRotate(CATransform3DIdentity, angles.yaw.radians, 0.0, 1.0, 0.0)), CATransform3DRotate(CATransform3DIdentity, angles.roll.radians, 0.0, 0.0, -1.0));
-    
+    [self.chart1 addPoint:angles.yaw.degrees + 180];
     NSLog(@"%.2f %.2f %.2f", angles.pitch.degrees, angles.yaw.degrees, angles.roll.degrees);
 }
 

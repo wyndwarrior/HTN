@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MyoKit/MyoKit.h>
+#import "ChartView.h"
 
 @interface MainViewController : UIViewController
 
