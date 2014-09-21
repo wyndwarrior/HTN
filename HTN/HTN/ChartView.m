@@ -8,16 +8,19 @@
 
 #import "ChartView.h"
 
-@interface ChartView ()
+@interface ChartView (){
+    int maxValue;
+}
 
 @property (nonatomic, strong) JBLineChartView *chartView;
 @property (nonatomic, strong) NSMutableArray *data;
+@property (nonatomic, assign) int counter;
 
 @end
 
 @implementation ChartView
 
--(id)initWithFrame:(CGRect)frame{
+-(id)initWithFrame:(CGRect)frame dataSets:(NSInteger)sets max:(CGFloat)maxx{
     self = [super initWithFrame:frame];
     if( self ){
         self.chartView = [[JBLineChartView alloc] init];
@@ -25,19 +28,26 @@
         self.chartView.delegate = self;
         self.chartView.dataSource = self;
         self.chartView.backgroundColor = [UIColor yellowColor];
-        self.chartView.maximumValue = 360;
+        self.chartView.maximumValue = maxx;
+        maxValue = maxx;
         self.chartView.minimumValue = 0;
         self.data = [NSMutableArray array];
+        for(int i = 0; i<sets; i++)
+            [self.data addObject:[NSMutableArray array]];
         [self addSubview:self.chartView];
         [self.chartView reloadData];
+        self.counter = 0;
     }
     return self;
 }
 
--(void)addPoint:(CGFloat)point{
-    while(self.data.count >= 100)
-        [self.data removeObjectAtIndex:0];
-    [self.data addObject:[NSNumber numberWithFloat:point]];
+-(void)addPoint:(CGFloat)point forSet:(NSInteger)set{
+    self.counter = (self.counter+1) % 2;
+    if( self.counter )
+        return;
+    while([[self.data objectAtIndex:set] count] >= 30)
+        [[self.data objectAtIndex:set] removeObjectAtIndex:0];
+    [[self.data objectAtIndex:set] addObject:[NSNumber numberWithFloat:fmin(maxValue, point + maxValue/2)]];
     [self.chartView reloadData];
 }
 
@@ -50,11 +60,11 @@
 }
 
 - (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView{
-    return 1;
+    return self.data.count;
 }
 
 - (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex{
-    return self.data.count;
+    return [[self.data objectAtIndex:lineIndex] count];
 }
 
 - (BOOL)lineChartView:(JBLineChartView *)lineChartView showsDotsForLineAtLineIndex:(NSUInteger)lineIndex{
@@ -68,7 +78,7 @@
 #pragma mark - JBLineChartViewDelegate
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex{
-    return [[self.data objectAtIndex:horizontalIndex] floatValue];
+    return fmax(0, [[[self.data objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] floatValue]);
 }
 
 

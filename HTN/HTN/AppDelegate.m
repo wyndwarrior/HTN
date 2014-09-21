@@ -27,11 +27,13 @@
     MainViewController *mcon = [[MainViewController alloc] init];
     UINavigationController *navcon = [[UINavigationController alloc]
                                     initWithRootViewController: mcon];
+    ActivitesViewController *act = [[ActivitesViewController alloc] init];
+    UINavigationController *navcon2 = [[UINavigationController alloc] initWithRootViewController:act];
     
     UITabBarController* tabs = [[UITabBarController alloc] init];
     tabs.delegate = self;
     
-    [tabs setViewControllers:[NSArray arrayWithObjects:navcon, nil]];
+    [tabs setViewControllers:[NSArray arrayWithObjects:navcon, navcon2, nil]];
     
     self.window.rootViewController = tabs;
     

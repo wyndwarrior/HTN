@@ -11,6 +11,7 @@
 
 @interface ChartView : UIView <JBLineChartViewDataSource, JBLineChartViewDelegate>
 
--(void)addPoint:(CGFloat)point;
+-(void)addPoint:(CGFloat)point forSet:(NSInteger)set;
+-(id)initWithFrame:(CGRect)frame dataSets:(NSInteger)sets max:(CGFloat)maxx;
 
 @end

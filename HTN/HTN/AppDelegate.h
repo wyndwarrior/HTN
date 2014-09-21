@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
+#import "ActivitesViewController.h"
 #import <MyoKit/MyoKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
