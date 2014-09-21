@@ -24,5 +24,6 @@
 +(void)savePlist:(id)plist toFile:(NSString *)file;
 -(void)setPref:(NSString *)k val:(id)obj;
 -(void)initPrefs;
+-(void)save;
 
 @end

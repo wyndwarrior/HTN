@@ -110,6 +110,12 @@ static CGFloat ddx(CGFloat x1, CGFloat x2, CGFloat diff){
     return 100 * ans / diff;
 }
 
+-(void)calibrate{
+    cx = rx;
+    cy = ry;
+    cz = rz;
+}
+
 - (void)didReceiveOrientationEvent:(NSNotification *)notification {
     TLMOrientationEvent *orientationEvent = notification.userInfo[kTLMKeyOrientationEvent];
     TLMEulerAngles *angles = [TLMEulerAngles anglesWithQuaternion:orientationEvent.quaternion];
@@ -132,7 +138,8 @@ static CGFloat ddx(CGFloat x1, CGFloat x2, CGFloat diff){
     ry = _ry;
     rz = _rz;
     for(id del in self.delegates)
-        [del didReceiveOrientation:rx ry:ry rz:rz dx:dx dy:dy dz:dz];
+        //[del didReceiveOrientation:rx ry:ry rz:rz dx:dx dy:dy dz:dz];
+        [del didReceiveOrientation:rx ry:ry rz:rz dx:calibrate(rx, cx) dy:calibrate(ry, cy) dz:calibrate(rz, cz)];
 }
 
 - (void)didReceiveAccelerometerEvent:(NSNotification *)notification {

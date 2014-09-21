@@ -47,8 +47,8 @@ static void convert(vector<v3> & vec, NSArray* ar, int from, int to, int & group
     }
 }
 
-static double dist(v3 v1, v3 v2){
-    return pow(v1.x + v2.x, 2) + pow(v1.y + v2.y, 2) + pow(v1.z + v2.z,2);
+static double dist(v3 v1){
+    return v1.x*v1.x+v1.y*v1.y+v1.z*v1.z;
 }
 
 +(double)match:(NSArray *)ar1 ar2:(NSArray *)ar2 from1:(int)from1 to1:(int)to1 from2:(int)from2 to2:(int)to2{
@@ -71,26 +71,15 @@ static double dist(v3 v1, v3 v2){
                 vv.x = fabs(v1[i-1].x - v2[j-1].x);
                 vv.y = fabs(v1[i-1].y - v2[j-1].y);
                 vv.z = fabs(v1[i-1].z - v2[j-1].z);
-                double dist1 = dist(mat[i][j], mat[i-1][j]),
-                dist2 = dist(mat[i][j], mat[i][j-1]),
-                dist3 = dist(mat[i][j], mat[i-1][j-1]);
-                v3 ans;
-                if( dist1  < dist2 && dist1 < dist3 ){
-                    ans = mat[i-1][j];
-                }else if( dist2 < dist1 && dist2 < dist3){
-                    ans = mat[i][j-1];
-                }else
-                    ans = mat[i-1][j-1];
-                mat[i][j].x += ans.x;
-                mat[i][j].y += ans.y;
-                mat[i][j].z += ans.z;
+                double ddist = dist(vv);
+                double dist1 = mat[i-1][j],
+                dist2 = mat[i][j-1],
+                dist3 = mat[i-1][j-1];
+                mat[i][j] = ddist + MIN(MIN(dist1, dist2), dist3);
                 //NSLog(@"%d %d = %.2f %.2f %.2f", i, j, mat[i][j].x, mat[i][j].y, mat[i][j].z);
             }
         }
-    
-    v3 v0;
-    v0.x = v0.y = v0.z = 0;
-    return dist(mat[v1.size()][v2.size()], v0);
+    return mat[v1.size()][v2.size()];
 }
 
 @end

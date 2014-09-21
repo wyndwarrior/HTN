@@ -25,6 +25,7 @@
 -(id)initWithFrame:(CGRect)frame dataSets:(NSInteger)sets max:(CGFloat)maxx{
     self = [super initWithFrame:frame];
     if( self ){
+        maxx = 360;
         color[0] = [UIColor greenColor];
         color[1] = [UIColor redColor];
         color[2] = [UIColor blueColor];
@@ -57,7 +58,7 @@
         return;
     while(!self.showAll && [[self.data objectAtIndex:set] count] >= 30)
         [[self.data objectAtIndex:set] removeObjectAtIndex:0];
-    [[self.data objectAtIndex:set] addObject:[NSNumber numberWithFloat:fmin(maxValue, point + maxValue/2)]];
+    [[self.data objectAtIndex:set] addObject:[NSNumber numberWithFloat:fmin(maxValue, point/* + maxValue/2*/)]];
     if( set == 0 )
         [self.index addObject:[NSNumber numberWithInt:index]];
     //NSLog(@"%@", self.data);

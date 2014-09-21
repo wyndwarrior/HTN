@@ -13,7 +13,7 @@
 #import "DataCollector.h"
 #import "MatchOperation.h"
 
-@interface MainViewController : UIViewController <MyoListenerProtocol, MatchOperationDelegate>
+@interface MainViewController : UITableViewController <MyoListenerProtocol, MatchOperationDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property(atomic, strong) NSMutableArray *data;
 
