@@ -17,7 +17,7 @@
 -(id)init{
     self = [super init];
     if ( self) {
-        self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemHistory tag:0];
+        self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:0];
         self.tabBarItem.title = @"List";
     }
     return self;

@@ -36,8 +36,10 @@
     
     [self connect];
 
-    self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0];
-    self.tabBarItem.title = @"Home";
+    //self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0];
+    //self.tabBarItem.title = @"Home";
+    
+    self.tabBarItem = [[UITabBarItem alloc ] initWithTitle:@"Home" image:[UIImage imageNamed:@"bar_home.png"] tag:0];
     
     //if( [self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -46,7 +48,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Pair" style:UIBarButtonItemStylePlain target:self action:@selector(connect)];
     
     UINavigationItem *item = self.navigationItem;
-    item.title = @"IntelliFit";
+    item.title = @"Pain90x";
     
     self.data = [NSMutableArray array];
     queue = [[NSOperationQueue alloc] init];

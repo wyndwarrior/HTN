@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import "ActivitesViewController.h"
 #import <MyoKit/MyoKit.h>
+#import "StatisticsViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 

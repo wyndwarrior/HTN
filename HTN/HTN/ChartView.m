@@ -158,6 +158,12 @@
     [self.chartView reloadData];
 }
 
+
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionFillColorForLineAtLineIndex:(NSUInteger)lineIndex{
+    if( self.area)
+        return color[lineIndex];
+    return nil;
+}
 -(void)clear{
     int sets = self.data.count;
     self.data = [NSMutableArray array];

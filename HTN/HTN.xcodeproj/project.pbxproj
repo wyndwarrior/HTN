@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		A03D53C319CEAB7D007340AB /* MatchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A03D53C219CEAB7D007340AB /* MatchOperation.m */; };
+		A03D53C919CEFE70007340AB /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A03D53C819CEFE70007340AB /* StatisticsViewController.m */; };
+		A03D53CB19CEFFAA007340AB /* bar-chart.png in Resources */ = {isa = PBXBuildFile; fileRef = A03D53CA19CEFFAA007340AB /* bar-chart.png */; };
+		A03D53CE19CF02C4007340AB /* bar_home.png in Resources */ = {isa = PBXBuildFile; fileRef = A03D53CC19CF02C4007340AB /* bar_home.png */; };
+		A03D53CF19CF02C4007340AB /* bar_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A03D53CD19CF02C4007340AB /* bar_home@2x.png */; };
+		A03D53D219CF02C9007340AB /* bar_graph.png in Resources */ = {isa = PBXBuildFile; fileRef = A03D53D019CF02C9007340AB /* bar_graph.png */; };
+		A03D53D319CF02C9007340AB /* bar_graph@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A03D53D119CF02C9007340AB /* bar_graph@2x.png */; };
+		A03D53D619CF02E9007340AB /* bar_teacher.png in Resources */ = {isa = PBXBuildFile; fileRef = A03D53D419CF02E9007340AB /* bar_teacher.png */; };
+		A03D53D719CF02E9007340AB /* bar_teacher@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A03D53D519CF02E9007340AB /* bar_teacher@2x.png */; };
 		A0FAEAB619CDF6ED001C96C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FAEAB519CDF6ED001C96C4 /* main.m */; };
 		A0FAEAB919CDF6EE001C96C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FAEAB819CDF6EE001C96C4 /* AppDelegate.m */; };
 		A0FAEAC419CDF6EF001C96C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0FAEAC319CDF6EF001C96C4 /* Images.xcassets */; };
@@ -41,6 +49,15 @@
 /* Begin PBXFileReference section */
 		A03D53C119CEAB7D007340AB /* MatchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchOperation.h; sourceTree = "<group>"; };
 		A03D53C219CEAB7D007340AB /* MatchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchOperation.m; sourceTree = "<group>"; };
+		A03D53C719CEFE70007340AB /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
+		A03D53C819CEFE70007340AB /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		A03D53CA19CEFFAA007340AB /* bar-chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-chart.png"; sourceTree = "<group>"; };
+		A03D53CC19CF02C4007340AB /* bar_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_home.png; sourceTree = "<group>"; };
+		A03D53CD19CF02C4007340AB /* bar_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_home@2x.png"; sourceTree = "<group>"; };
+		A03D53D019CF02C9007340AB /* bar_graph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_graph.png; sourceTree = "<group>"; };
+		A03D53D119CF02C9007340AB /* bar_graph@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_graph@2x.png"; sourceTree = "<group>"; };
+		A03D53D419CF02E9007340AB /* bar_teacher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_teacher.png; sourceTree = "<group>"; };
+		A03D53D519CF02E9007340AB /* bar_teacher@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_teacher@2x.png"; sourceTree = "<group>"; };
 		A0FAEAB019CDF6EC001C96C4 /* HTN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0FAEAB419CDF6ED001C96C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0FAEAB519CDF6ED001C96C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -124,6 +141,8 @@
 				A0FAEB0519CE69D3001C96C4 /* ActivityMatcher.mm */,
 				A0FAEAF619CE40E1001C96C4 /* ActivitesViewController.h */,
 				A0FAEAF719CE40E1001C96C4 /* ActivitesViewController.m */,
+				A03D53C719CEFE70007340AB /* StatisticsViewController.h */,
+				A03D53C819CEFE70007340AB /* StatisticsViewController.m */,
 				A0FAEAF919CE410C001C96C4 /* CreateViewController.h */,
 				A0FAEAFA19CE410C001C96C4 /* CreateViewController.m */,
 				A0FAEAF319CE1257001C96C4 /* ChartView.h */,
@@ -148,6 +167,13 @@
 		A0FAEAB319CDF6ED001C96C4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A03D53D019CF02C9007340AB /* bar_graph.png */,
+				A03D53D119CF02C9007340AB /* bar_graph@2x.png */,
+				A03D53CC19CF02C4007340AB /* bar_home.png */,
+				A03D53CD19CF02C4007340AB /* bar_home@2x.png */,
+				A03D53D419CF02E9007340AB /* bar_teacher.png */,
+				A03D53D519CF02E9007340AB /* bar_teacher@2x.png */,
+				A03D53CA19CEFFAA007340AB /* bar-chart.png */,
 				A0FAEAE119CDFD43001C96C4 /* MyoKit.framework */,
 				A0FAEADF19CDFD07001C96C4 /* Default-568h@2x.png */,
 				A0FAEAB419CDF6ED001C96C4 /* Info.plist */,
@@ -273,9 +299,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A03D53CB19CEFFAA007340AB /* bar-chart.png in Resources */,
+				A03D53CF19CF02C4007340AB /* bar_home@2x.png in Resources */,
+				A03D53D219CF02C9007340AB /* bar_graph.png in Resources */,
+				A03D53D319CF02C9007340AB /* bar_graph@2x.png in Resources */,
+				A03D53CE19CF02C4007340AB /* bar_home.png in Resources */,
 				A0FAEAC419CDF6EF001C96C4 /* Images.xcassets in Resources */,
 				A0FAEB0019CE4425001C96C4 /* CWFieldCell.xib in Resources */,
+				A03D53D719CF02E9007340AB /* bar_teacher@2x.png in Resources */,
 				A0FAEAE019CDFD07001C96C4 /* Default-568h@2x.png in Resources */,
+				A03D53D619CF02E9007340AB /* bar_teacher.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A03D53C919CEFE70007340AB /* StatisticsViewController.m in Sources */,
 				A0FAEAB919CDF6EE001C96C4 /* AppDelegate.m in Sources */,
 				A0FAEAEF19CE113F001C96C4 /* JBLineChartView.m in Sources */,
 				A0FAEAFB19CE410C001C96C4 /* CreateViewController.m in Sources */,

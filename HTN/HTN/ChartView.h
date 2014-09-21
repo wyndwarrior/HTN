@@ -18,5 +18,6 @@
 @property(nonatomic, assign) int startIndex;
 @property(nonatomic, assign) int endIndex;
 @property (nonatomic, strong) NSMutableArray *index;
+@property(nonatomic, assign) bool area;
 
 @end
