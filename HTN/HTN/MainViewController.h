@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <MyoKit/MyoKit.h>
 #import "ChartView.h"
+#import "MyoListener.h"
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController <MyoListenerProtocol>
 
 @end

@@ -18,9 +18,18 @@
 
 @implementation MyoListener
 
+
++(MyoListener *)shared{
+    static MyoListener *share = nil;
+    if( !share )
+        share = [[MyoListener alloc] init];
+    return share;
+}
+
 -(id)init{
     self = [super init];
     if( self ){
+        self.delegates = [NSMutableArray array];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didConnectDevice:)
                                                      name:TLMHubDidConnectDeviceNotification
@@ -122,12 +131,8 @@ static CGFloat ddx(CGFloat x1, CGFloat x2, CGFloat diff){
     rx = _rx;
     ry = _ry;
     rz = _rz;
-    [self.chart1 addPoint:dx forSet:0];
-    [self.chart1 addPoint:dy forSet:1];
-    [self.chart1 addPoint:dz forSet:2];
-    //NSLog(@"%.2f",diff);
-    if( dx < -100 || dx > 1000 || dx + dy + dz > 100000)
-        NSLog(@"%.2f %.2f %.2f - %.2f %.2f %.2f %.2f", rx, ry, rz, dx, dy, dz, diff);
+    for(id del in self.delegates)
+        [del didReceiveOrientation:rx ry:ry rz:rz dx:dx dy:dy dz:dz];
 }
 
 - (void)didReceiveAccelerometerEvent:(NSNotification *)notification {

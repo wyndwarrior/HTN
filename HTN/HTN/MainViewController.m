@@ -8,7 +8,8 @@
 
 #import "MainViewController.h"
 
-@interface MainViewController ()
+@interface MainViewController (){
+}
 
 -(void)setupOnce;
 -(void)connect;
@@ -22,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
     
     [self connect];
@@ -51,9 +52,17 @@
 
 - (void)setupOnce{
     [[TLMHub sharedHub] setShouldNotifyInBackground:YES];
-    
+    [[MyoListener shared].delegates addObject:self];
     self.chart1 = [[ChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200) dataSets:3 max:300];
     [self.view addSubview:self.chart1];
+}
+
+
+-(void)didReceiveOrientation:(CGFloat)rx ry:(CGFloat)ry rz:(CGFloat)rz
+                          dx:(CGFloat)dx dy:(CGFloat)dy dz:(CGFloat)dz{
+    [self.chart1 addPoint:dx forSet:0];
+    [self.chart1 addPoint:dy forSet:1];
+    [self.chart1 addPoint:dz forSet:2];
 }
 
 - (void)didReceiveMemoryWarning {

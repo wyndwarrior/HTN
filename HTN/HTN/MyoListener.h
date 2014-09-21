@@ -21,6 +21,7 @@
     
 }
 
-@property(nonatomic, weak) id<MyoListenerProtocol> delegate;
+@property(nonatomic, strong) NSMutableArray *delegates;
++(MyoListener *)shared;
 
 @end

@@ -23,6 +23,11 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -52,16 +57,36 @@
 
 #pragma mark - Table view data source
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [[DataCollector shared].allData count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"PlainCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    cell.detailTextLabel.text =[[[[DataCollector shared].allData objectAtIndex:indexPath.row] objectForKey:@"Amount"] stringByAppendingString:@" per day"];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.text = [[[DataCollector shared].allData objectAtIndex:indexPath.row] objectForKey:@"Name"];
+    cell.textLabel.font = [UIFont systemFontOfSize:20];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 65;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*

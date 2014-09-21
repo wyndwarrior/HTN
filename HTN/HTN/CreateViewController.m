@@ -10,7 +10,12 @@
 
 @interface CreateViewController (){
     ChartView *chart;
+    NSMutableArray *data;
+    bool recording;
 }
+
+-(void)startRecording;
+-(void)stopRecording;
 
 @end
 
@@ -25,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    recording = false;
     if( [self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
@@ -47,7 +52,7 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resign)];
     tap.delegate = self;
-    [self.tableView addGestureRecognizer:tap];
+    //[self.tableView addGestureRecognizer:tap];
     
     CGRect frame = self.view.frame;
     frame.origin.x = 0;
@@ -55,6 +60,17 @@
     frame.size.height = frame.size.height/3;
     chart = [[ChartView alloc] initWithFrame:frame dataSets:3 max:300];
     [self.view addSubview:chart];
+}
+
+
+-(void)didReceiveOrientation:(CGFloat)rx ry:(CGFloat)ry rz:(CGFloat)rz
+                          dx:(CGFloat)dx dy:(CGFloat)dy dz:(CGFloat)dz{
+    [chart addPoint:dx forSet:0];
+    [chart addPoint:dy forSet:1];
+    [chart addPoint:dz forSet:2];
+    [data addObject:[NSNumber numberWithDouble:dx]];
+    [data addObject:[NSNumber numberWithDouble:dy]];
+    [data addObject:[NSNumber numberWithDouble:dz]];
 }
 
 -(void)resign{
@@ -69,17 +85,44 @@
 
 -(void)cancel{
     [self dismissViewControllerAnimated:YES completion:nil];
+    [[MyoListener shared].delegates removeObject:self];
 }
 
 
 -(void)done{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"%@ %@", nameField.field.text, numberField.field.text);
+    [[DataCollector shared] addData:@{@"Name":nameField.field.text,
+                                      @"Amount":numberField.field.text,
+                                      @"Data":data}];
+    [self cancel];
+}
+
+-(void)startRecording{
+    if( !data )
+        data = [NSMutableArray array];
+    [[MyoListener shared].delegates addObject:self];
+}
+
+-(void)stopRecording{
+    [[MyoListener shared].delegates removeObject:self];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if( indexPath.section == 1){
-        
+        [self resign];
+        if( indexPath.row == 0 ){
+            recording = !recording;
+            [self.tableView reloadData];
+            if( recording ){
+                [self startRecording];
+            }else{
+                [self stopRecording];
+            }
+        }else if( indexPath.row == 1){
+            data = [NSMutableArray array];
+        }
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -99,7 +142,7 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        cell.textLabel.text = indexPath.row == 0 ? @"Start recording":@"Clear recording";
+        cell.textLabel.text = indexPath.row == 0 ? (recording?@"Stop recording":@"Start recording"):@"Clear recording";
         cell.textLabel.numberOfLines = 0;
         cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
         cell.textLabel.font = [UIFont systemFontOfSize:18];

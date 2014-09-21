@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "CWFieldCell.h"
 #import "ChartView.h"
+#import "MyoListener.h"
+#import "DataCollector.h"
 
-@interface CreateViewController : UITableViewController <UITextFieldDelegate, UIGestureRecognizerDelegate>{
+@interface CreateViewController : UITableViewController <UITextFieldDelegate, UIGestureRecognizerDelegate, MyoListenerProtocol>{
     
     CWFieldCell *nameField;
     CWFieldCell *numberField;

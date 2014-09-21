@@ -10,6 +10,7 @@
 
 @interface ChartView (){
     int maxValue;
+    UIColor* color[5];
 }
 
 @property (nonatomic, strong) JBLineChartView *chartView;
@@ -23,11 +24,14 @@
 -(id)initWithFrame:(CGRect)frame dataSets:(NSInteger)sets max:(CGFloat)maxx{
     self = [super initWithFrame:frame];
     if( self ){
+        color[0] = [UIColor greenColor];
+        color[1] = [UIColor redColor];
+        color[2] = [UIColor blueColor];
         self.chartView = [[JBLineChartView alloc] init];
         self.chartView.frame = CGRectMake(0,0,frame.size.width, frame.size.height);
         self.chartView.delegate = self;
         self.chartView.dataSource = self;
-        self.chartView.backgroundColor = [UIColor yellowColor];
+        self.chartView.backgroundColor = [UIColor whiteColor];
         self.chartView.maximumValue = maxx;
         maxValue = maxx;
         self.chartView.minimumValue = 0;
@@ -81,34 +85,35 @@
     return fmax(0, [[[self.data objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] floatValue]);
 }
 
+#define RADIUS 2.5
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex{
-    return [UIColor blueColor];
+    return color[lineIndex];
 }
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex{
-    return [UIColor blueColor];
+    return color[lineIndex];
 }
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex{
-    return 1.0;
+    return RADIUS;
 }
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView dotRadiusForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex{
-    return 1.0;
+    return RADIUS;
 }
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView verticalSelectionColorForLineAtLineIndex:(NSUInteger)lineIndex{
-    return [UIColor whiteColor];
+    return color[lineIndex];
 }
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForLineAtLineIndex:(NSUInteger)lineIndex
 {
-    return [UIColor blackColor];
+    return color[lineIndex];
 }
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex{
-    return [UIColor greenColor];
+    return color[lineIndex];
 }
 
 - (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex{
