@@ -38,6 +38,9 @@
     self.window.rootViewController = tabs;
     
     [self.window makeKeyAndVisible];
+    
+    [DataCollector shared];
+    
     return YES;
 }
 

@@ -10,7 +10,11 @@
 #import <MyoKit/MyoKit.h>
 #import "ChartView.h"
 #import "MyoListener.h"
+#import "DataCollector.h"
+#import "MatchOperation.h"
 
-@interface MainViewController : UIViewController <MyoListenerProtocol>
+@interface MainViewController : UIViewController <MyoListenerProtocol, MatchOperationDelegate>
+
+@property(atomic, strong) NSMutableArray *data;
 
 @end

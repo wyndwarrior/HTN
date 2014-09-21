@@ -59,15 +59,17 @@
     frame.origin.y = frame.size.height*2/3-55;
     frame.size.height = frame.size.height/3;
     chart = [[ChartView alloc] initWithFrame:frame dataSets:3 max:300];
+    chart.showAll = true;
+    self.tableView.alwaysBounceVertical = NO;
     [self.view addSubview:chart];
 }
 
 
 -(void)didReceiveOrientation:(CGFloat)rx ry:(CGFloat)ry rz:(CGFloat)rz
                           dx:(CGFloat)dx dy:(CGFloat)dy dz:(CGFloat)dz{
-    [chart addPoint:dx forSet:0];
-    [chart addPoint:dy forSet:1];
-    [chart addPoint:dz forSet:2];
+    [chart addPoint:dx forSet:0 index:data.count];
+    [chart addPoint:dy forSet:1 index:data.count];
+    [chart addPoint:dz forSet:2 index:data.count];
     [data addObject:[NSNumber numberWithDouble:dx]];
     [data addObject:[NSNumber numberWithDouble:dy]];
     [data addObject:[NSNumber numberWithDouble:dz]];
@@ -90,10 +92,19 @@
 
 
 -(void)done{
-    NSLog(@"%@ %@", nameField.field.text, numberField.field.text);
-    [[DataCollector shared] addData:@{@"Name":nameField.field.text,
+    if( data && ![nameField.field.text isEqualToString:@""] && ![numberField.field.text isEqualToString:@""]){
+        
+        int a = [[chart.index objectAtIndex:0] intValue];
+        int b = [[chart.index objectAtIndex:(int)chart.index.count-1] intValue];
+        
+        NSMutableArray * ar2 = [NSMutableArray array];
+        for(int i = 0; i<b-a; i++)
+            [ar2 addObject:[data objectAtIndex:i+a]];
+        
+        [[DataCollector shared] addData:@{@"Name":nameField.field.text,
                                       @"Amount":numberField.field.text,
-                                      @"Data":data}];
+                                      @"Data":ar2}];
+    }
     [self cancel];
 }
 
@@ -120,6 +131,7 @@
             }
         }else if( indexPath.row == 1){
             data = [NSMutableArray array];
+            [chart clear];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

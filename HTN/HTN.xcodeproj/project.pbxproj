@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A03D53C319CEAB7D007340AB /* MatchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A03D53C219CEAB7D007340AB /* MatchOperation.m */; };
 		A0FAEAB619CDF6ED001C96C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FAEAB519CDF6ED001C96C4 /* main.m */; };
 		A0FAEAB919CDF6EE001C96C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FAEAB819CDF6EE001C96C4 /* AppDelegate.m */; };
 		A0FAEAC419CDF6EF001C96C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0FAEAC319CDF6EF001C96C4 /* Images.xcassets */; };
@@ -23,7 +24,7 @@
 		A0FAEAFF19CE4425001C96C4 /* CWFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FAEAFD19CE4425001C96C4 /* CWFieldCell.m */; };
 		A0FAEB0019CE4425001C96C4 /* CWFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FAEAFE19CE4425001C96C4 /* CWFieldCell.xib */; };
 		A0FAEB0319CE5473001C96C4 /* MyoListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FAEB0219CE5473001C96C4 /* MyoListener.m */; };
-		A0FAEB0619CE69D3001C96C4 /* ActivityMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FAEB0519CE69D3001C96C4 /* ActivityMatcher.m */; };
+		A0FAEB0619CE69D3001C96C4 /* ActivityMatcher.mm in Sources */ = {isa = PBXBuildFile; fileRef = A0FAEB0519CE69D3001C96C4 /* ActivityMatcher.mm */; };
 		A0FAEB0919CE6BD1001C96C4 /* DataCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FAEB0819CE6BD1001C96C4 /* DataCollector.m */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A03D53C119CEAB7D007340AB /* MatchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchOperation.h; sourceTree = "<group>"; };
+		A03D53C219CEAB7D007340AB /* MatchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchOperation.m; sourceTree = "<group>"; };
 		A0FAEAB019CDF6EC001C96C4 /* HTN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0FAEAB419CDF6ED001C96C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0FAEAB519CDF6ED001C96C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -69,7 +72,7 @@
 		A0FAEB0119CE5473001C96C4 /* MyoListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyoListener.h; sourceTree = "<group>"; };
 		A0FAEB0219CE5473001C96C4 /* MyoListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyoListener.m; sourceTree = "<group>"; };
 		A0FAEB0419CE69D3001C96C4 /* ActivityMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityMatcher.h; sourceTree = "<group>"; };
-		A0FAEB0519CE69D3001C96C4 /* ActivityMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityMatcher.m; sourceTree = "<group>"; };
+		A0FAEB0519CE69D3001C96C4 /* ActivityMatcher.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActivityMatcher.mm; sourceTree = "<group>"; };
 		A0FAEB0719CE6BD1001C96C4 /* DataCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCollector.h; sourceTree = "<group>"; };
 		A0FAEB0819CE6BD1001C96C4 /* DataCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCollector.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,20 +120,22 @@
 				A0FAEAE619CE113F001C96C4 /* JBCharts */,
 				A0FAEAB719CDF6ED001C96C4 /* AppDelegate.h */,
 				A0FAEAB819CDF6EE001C96C4 /* AppDelegate.m */,
-				A0FAEAF319CE1257001C96C4 /* ChartView.h */,
-				A0FAEAF419CE1257001C96C4 /* ChartView.m */,
-				A0FAEB0719CE6BD1001C96C4 /* DataCollector.h */,
-				A0FAEB0819CE6BD1001C96C4 /* DataCollector.m */,
 				A0FAEB0419CE69D3001C96C4 /* ActivityMatcher.h */,
-				A0FAEB0519CE69D3001C96C4 /* ActivityMatcher.m */,
-				A0FAEADC19CDFBEE001C96C4 /* MainViewController.h */,
-				A0FAEADD19CDFBEE001C96C4 /* MainViewController.m */,
-				A0FAEB0119CE5473001C96C4 /* MyoListener.h */,
-				A0FAEB0219CE5473001C96C4 /* MyoListener.m */,
+				A0FAEB0519CE69D3001C96C4 /* ActivityMatcher.mm */,
 				A0FAEAF619CE40E1001C96C4 /* ActivitesViewController.h */,
 				A0FAEAF719CE40E1001C96C4 /* ActivitesViewController.m */,
 				A0FAEAF919CE410C001C96C4 /* CreateViewController.h */,
 				A0FAEAFA19CE410C001C96C4 /* CreateViewController.m */,
+				A0FAEAF319CE1257001C96C4 /* ChartView.h */,
+				A0FAEAF419CE1257001C96C4 /* ChartView.m */,
+				A0FAEB0719CE6BD1001C96C4 /* DataCollector.h */,
+				A0FAEB0819CE6BD1001C96C4 /* DataCollector.m */,
+				A0FAEADC19CDFBEE001C96C4 /* MainViewController.h */,
+				A0FAEADD19CDFBEE001C96C4 /* MainViewController.m */,
+				A03D53C119CEAB7D007340AB /* MatchOperation.h */,
+				A03D53C219CEAB7D007340AB /* MatchOperation.m */,
+				A0FAEB0119CE5473001C96C4 /* MyoListener.h */,
+				A0FAEB0219CE5473001C96C4 /* MyoListener.m */,
 				A0FAEAFC19CE4425001C96C4 /* CWFieldCell.h */,
 				A0FAEAFD19CE4425001C96C4 /* CWFieldCell.m */,
 				A0FAEAFE19CE4425001C96C4 /* CWFieldCell.xib */,
@@ -297,8 +302,9 @@
 				A0FAEB0919CE6BD1001C96C4 /* DataCollector.m in Sources */,
 				A0FAEADE19CDFBEE001C96C4 /* MainViewController.m in Sources */,
 				A0FAEB0319CE5473001C96C4 /* MyoListener.m in Sources */,
+				A03D53C319CEAB7D007340AB /* MatchOperation.m in Sources */,
 				A0FAEAEE19CE113F001C96C4 /* JBChartView.m in Sources */,
-				A0FAEB0619CE69D3001C96C4 /* ActivityMatcher.m in Sources */,
+				A0FAEB0619CE69D3001C96C4 /* ActivityMatcher.mm in Sources */,
 				A0FAEAB619CDF6ED001C96C4 /* main.m in Sources */,
 				A0FAEAF819CE40E1001C96C4 /* ActivitesViewController.m in Sources */,
 			);
@@ -490,6 +496,7 @@
 				A0FAEAD819CDF6F1001C96C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A0FAEAD919CDF6F1001C96C4 /* Build configuration list for PBXNativeTarget "HTNTests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +505,7 @@
 				A0FAEADB19CDF6F1001C96C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

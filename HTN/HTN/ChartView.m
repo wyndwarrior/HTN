@@ -10,6 +10,7 @@
 
 @interface ChartView (){
     int maxValue;
+    
     UIColor* color[5];
 }
 
@@ -36,22 +37,30 @@
         maxValue = maxx;
         self.chartView.minimumValue = 0;
         self.data = [NSMutableArray array];
-        for(int i = 0; i<sets; i++)
+        self.index = [NSMutableArray array];
+        for(int i = 0; i<sets; i++){
             [self.data addObject:[NSMutableArray array]];
+            [[self.data objectAtIndex:i] addObject:[NSNumber numberWithFloat:0]];
+        }
         [self addSubview:self.chartView];
         [self.chartView reloadData];
+        self.showAll = false;
         self.counter = 0;
+        self.startIndex = -1;
     }
     return self;
 }
 
--(void)addPoint:(CGFloat)point forSet:(NSInteger)set{
-    self.counter = (self.counter+1) % 2;
+-(void)addPoint:(CGFloat)point forSet:(NSInteger)set index:(NSInteger)index{
+    self.counter = (self.counter+1) % (self.showAll?8:2);
     if( self.counter )
         return;
-    while([[self.data objectAtIndex:set] count] >= 30)
+    while(!self.showAll && [[self.data objectAtIndex:set] count] >= 30)
         [[self.data objectAtIndex:set] removeObjectAtIndex:0];
     [[self.data objectAtIndex:set] addObject:[NSNumber numberWithFloat:fmin(maxValue, point + maxValue/2)]];
+    if( set == 0 )
+        [self.index addObject:[NSNumber numberWithInt:index]];
+    //NSLog(@"%@", self.data);
     [self.chartView reloadData];
 }
 
@@ -119,6 +128,44 @@
 - (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex{
     return JBLineChartViewLineStyleSolid;
 }
+
+- (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
+{
+    if( self.startIndex == -1)
+        self.startIndex = horizontalIndex;
+    self.endIndex = horizontalIndex;
+}
+
+- (void)didDeselectLineInLineChartView:(JBLineChartView *)lineChartView
+{
+    if( self.index.count == 0 ) return;
+    NSMutableArray* data2 = [NSMutableArray array];
+    NSMutableArray* index2 = [NSMutableArray array];
+    for(int i = 0; i<self.data.count; i++){
+        [data2 addObject:[NSMutableArray array]];
+        for(int j = self.startIndex; j<=self.endIndex; j++)
+            [[data2 objectAtIndex:i] addObject:[[self.data objectAtIndex:i] objectAtIndex:j]];
+    }
+    
+    for(int j = self.startIndex; j<=self.endIndex; j++)
+        [index2 addObject:[self.index objectAtIndex:j]];
+    self.data = data2;
+    self.index = index2;
+    self.startIndex = -1;
+    [self.chartView reloadData];
+}
+
+-(void)clear{
+    int sets = self.data.count;
+    self.data = [NSMutableArray array];
+    self.index = [NSMutableArray array];
+    for(int i = 0; i<sets; i++){
+        [self.data addObject:[NSMutableArray array]];
+        [[self.data objectAtIndex:i] addObject:[NSNumber numberWithFloat:0]];
+    }
+    [self.chartView reloadData];
+}
+
 
 
 

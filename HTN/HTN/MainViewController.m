@@ -9,6 +9,9 @@
 #import "MainViewController.h"
 
 @interface MainViewController (){
+    MatchOperation *matcher;
+    NSOperationQueue *queue;
+    UILabel *label;
 }
 
 -(void)setupOnce;
@@ -42,6 +45,11 @@
     UINavigationItem *item = self.navigationItem;
     item.title = @"Home";
     
+    self.data = [NSMutableArray array];
+    queue = [[NSOperationQueue alloc] init];
+    matcher = [[MatchOperation alloc] initWithData:self.data delegate:self];
+    [queue addOperation:matcher];
+    
 }
 
 - (void)connect{
@@ -55,14 +63,24 @@
     [[MyoListener shared].delegates addObject:self];
     self.chart1 = [[ChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 200) dataSets:3 max:300];
     [self.view addSubview:self.chart1];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(0, 230, 320, 30)];
+    label.text = @"Rest";
+    [self.view addSubview:label];
 }
 
+-(void)didChangeActivity:(NSString *)act{
+    [label performSelectorOnMainThread:@selector(setText:) withObject:act waitUntilDone:NO];
+}
 
 -(void)didReceiveOrientation:(CGFloat)rx ry:(CGFloat)ry rz:(CGFloat)rz
                           dx:(CGFloat)dx dy:(CGFloat)dy dz:(CGFloat)dz{
-    [self.chart1 addPoint:dx forSet:0];
-    [self.chart1 addPoint:dy forSet:1];
-    [self.chart1 addPoint:dz forSet:2];
+    [self.chart1 addPoint:dx forSet:0 index:0];
+    [self.chart1 addPoint:dy forSet:1 index:0];
+    [self.chart1 addPoint:dz forSet:2 index:0];
+    
+    [self.data addObject:[NSNumber numberWithDouble:dx]];
+    [self.data addObject:[NSNumber numberWithDouble:dy]];
+    [self.data addObject:[NSNumber numberWithDouble:dz]];
 }
 
 - (void)didReceiveMemoryWarning {

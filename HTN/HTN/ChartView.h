@@ -11,7 +11,12 @@
 
 @interface ChartView : UIView <JBLineChartViewDataSource, JBLineChartViewDelegate>
 
--(void)addPoint:(CGFloat)point forSet:(NSInteger)set;
+-(void)addPoint:(CGFloat)point forSet:(NSInteger)set index:(NSInteger)index;
 -(id)initWithFrame:(CGRect)frame dataSets:(NSInteger)sets max:(CGFloat)maxx;
+-(void)clear;
+@property(nonatomic, assign) bool showAll;
+@property(nonatomic, assign) int startIndex;
+@property(nonatomic, assign) int endIndex;
+@property (nonatomic, strong) NSMutableArray *index;
 
 @end

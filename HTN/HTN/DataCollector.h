@@ -17,7 +17,7 @@
     NSMutableDictionary *prefs;
 }
 
-@property(nonatomic, strong) NSMutableArray *allData;
+@property(atomic, strong) NSMutableArray *allData;
 
 +(DataCollector *)shared;
 -(void)addData:(NSDictionary *)dict;
