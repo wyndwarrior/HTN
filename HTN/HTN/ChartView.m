@@ -20,15 +20,17 @@
 
 @end
 
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:0.9]
+
 @implementation ChartView
 
 -(id)initWithFrame:(CGRect)frame dataSets:(NSInteger)sets max:(CGFloat)maxx{
     self = [super initWithFrame:frame];
     if( self ){
         maxx = 360;
-        color[0] = [UIColor greenColor];
-        color[1] = [UIColor redColor];
-        color[2] = [UIColor blueColor];
+        color[0] = UIColorFromRGB(0x90ed7d);
+        color[1] = UIColorFromRGB(0xf7a35c);
+        color[2] = UIColorFromRGB(0x7cb5ec);
         self.chartView = [[JBLineChartView alloc] init];
         self.chartView.frame = CGRectMake(0,0,frame.size.width, frame.size.height);
         self.chartView.delegate = self;

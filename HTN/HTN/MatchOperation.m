@@ -33,7 +33,7 @@
             if( values.count < self.data.count){
                 int maxx = MIN((int)self.data.count * 150/100, (int)self.data.count);
                 double score = [ActivityMatcher match:values ar2:self.data from1:0 to1:values.count from2:self.data.count-maxx to2:self.data.count];
-                NSLog(@"%@ %.2f", [dict objectForKey:@"Name"], score);
+                //NSLog(@"%@ %.2f", [dict objectForKey:@"Name"], score);
                 if( score < minx){
                     minx = score;
                     minn = i;
@@ -41,7 +41,7 @@
             }
         }
         if( minn != -1){
-            NSLog(@"== %@", [[arr objectAtIndex:minn] objectForKey:@"Name"]);
+            //NSLog(@"== %@", [[arr objectAtIndex:minn] objectForKey:@"Name"]);
             [self.delegate didChangeActivity:[[arr objectAtIndex:minn] objectForKey:@"Name"]];
         }
     }
